@@ -15,8 +15,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">محتوای اصلی</a>
-  <header class="site-header"><div class="shell header-inner">
-    <nav aria-label="ناوبری اصلی" data-i18n-aria="navigation"><a href="#projects" data-i18n="projects">پروژه‌ها</a><a href="#writing" data-i18n="writing">نوشته‌ها</a><a href="#books" data-i18n="books">کتاب‌ها</a><a href="#tools" data-i18n="tools">ابزارها</a></nav>
+  <header class="site-header"><div class="shell header-inner quiet-header">
     <div class="header-controls"><button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to English">EN</button><button id="theme-toggle" class="icon-button" type="button" aria-label="فعال کردن حالت روشن">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.2 15.6A8.6 8.6 0 0 1 8.4 3.8 8.6 8.6 0 1 0 20.2 15.6Z"></path></svg>
@@ -27,33 +26,27 @@
       <div class="hero-backdrop" aria-hidden="true"><canvas id="data-background"></canvas></div>
       <div class="hero-copy">
         <h1 id="role-title" class="role-title" aria-label="مهندس داده و تحلیلگر داده"><span class="role-swap" aria-hidden="true"><span class="role-word is-active">مهندس</span><span class="role-word">تحلیلگر</span></span><strong class="data-word" data-i18n="data" aria-hidden="true">داده</strong></h1>
-        <a href="https://github.com/TheBoiAmirMan" target="_blank" rel="noopener noreferrer" class="hero-github" lang="en" dir="ltr">GitHub ↗</a>
       </div>
     </section>
 
-    <section id="expertise" class="section shell" aria-labelledby="expertise-title">
-      <div class="section-head"><div><p class="eyebrow"><span>01</span><span data-i18n="focusLabel">حوزه‌های کاری</span></p><h2 id="expertise-title" data-i18n="expertiseTitle">از زیرساخت تا بینش</h2></div></div>
-      <div class="expertise-grid">
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="7" rx="10" ry="4"></ellipse><path d="M6 7v18c0 2.2 4.5 4 10 4s10-1.8 10-4V7M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4"></path></svg></div><h3 data-i18n="engineering">مهندسی داده</h3></article>
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 25V7m0 18h24M9 20l6-7 5 4 8-11M23 6h5v5"></path></svg></div><h3 data-i18n="analytics">تحلیل داده</h3></article>
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="3"></rect><path d="M4 12h24M12 12v15M17 22v-4m4 4v-6m4 6v-3"></path></svg></div><h3 data-i18n="bi">هوش تجاری</h3></article>
+    <section id="practice" class="section shell practice-section" aria-labelledby="practice-title">
+      <div class="section-head"><h2 id="practice-title" data-fa="کارهایی که انجام می‌دهم" data-en="How I work">کارهایی که انجام می‌دهم</h2></div>
+      <div class="practice-list">
+        <article class="practice-unit"><div class="practice-heading"><span class="practice-mark" aria-hidden="true"></span><h3 data-fa="ساخت پایپ‌لاین داده" data-en="Building data pipelines">ساخت پایپ‌لاین داده</h3></div><div class="practice-tools" aria-label="Python, Airflow, Apache Spark, Docker"><img src="assets/icons/python.svg" alt="Python"><img src="assets/icons/airflow.svg" alt="Airflow"><img src="assets/icons/spark.svg" alt="Apache Spark"><img src="assets/icons/docker.svg" alt="Docker"></div></article>
+        <article class="practice-unit"><div class="practice-heading"><span class="practice-mark" aria-hidden="true"></span><h3 data-fa="مدل‌سازی و نگه‌داری داده" data-en="Modeling and storing data">مدل‌سازی و نگه‌داری داده</h3></div><div class="practice-tools" aria-label="SQL Server, PostgreSQL, Git"><img src="assets/icons/sqlserver.svg" alt="SQL Server"><img src="assets/icons/postgresql.svg" alt="PostgreSQL"><img src="assets/icons/git.svg" alt="Git"></div></article>
+        <article class="practice-unit"><div class="practice-heading"><span class="practice-mark" aria-hidden="true"></span><h3 data-fa="تحلیل و بصری‌سازی" data-en="Analysis and visualization">تحلیل و بصری‌سازی</h3></div><div class="practice-tools" aria-label="Power BI, Apache Superset, Metabase, Excel"><img src="assets/icons/powerbi.svg" alt="Power BI"><img src="assets/icons/superset.svg" alt="Apache Superset"><img src="assets/icons/metabase.svg" alt="Metabase"><img src="assets/icons/excel.svg" alt="Excel"></div></article>
       </div>
     </section>
-
-    <section id="tools" class="section tools-section" aria-labelledby="tools-title"><div class="shell">
-      <div class="section-head"><div><p class="eyebrow"><span>02</span><span data-i18n="toolboxLabel">جعبه‌ابزار</span></p><h2 id="tools-title" data-i18n="toolsTitle">ابزارهایی که با آن‌ها کار می‌کنم</h2></div><span class="section-note" data-i18n="toolsNote">کد، داده و داشبورد</span></div>
-      <div id="tools-grid" class="tools-grid"></div>
-    </div></section>
 
     <section id="projects" class="section shell" aria-labelledby="projects-title">
-      <div class="section-head"><div><p class="eyebrow"><span>03</span><span data-i18n="workLabel">کارها</span></p><h2 id="projects-title" data-i18n="projectsTitle">پروژه‌ها و مطالعات موردی</h2></div></div>
+      <div class="section-head"><h2 id="projects-title" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</h2></div>
       <div id="project-filters" class="project-filters" role="group" aria-label="فیلتر پروژه‌ها" data-i18n-aria="filters"><button type="button" data-filter="all" aria-pressed="true" data-i18n="all">همه</button><button type="button" data-filter="engineering" aria-pressed="false" data-i18n="engineering">مهندسی داده</button><button type="button" data-filter="analytics" aria-pressed="false" data-i18n="analytics">تحلیل داده</button><button type="button" data-filter="football" aria-pressed="false" data-i18n="football">داده‌های فوتبال</button></div>
       <div id="projects-list" class="projects-grid" aria-live="polite"><div class="empty-project"><span class="empty-symbol" aria-hidden="true">[ ]</span><p data-i18n="emptyProjects">هنوز پروژه‌ای اضافه نشده.</p></div></div>
     </section>
 
     <div class="shell journal-grid">
-      <section id="writing" class="section journal-section" aria-labelledby="writing-title"><div class="section-head"><div><p class="eyebrow"><span>04</span><span data-i18n="journalLabel">یادداشت‌ها</span></p><h2 id="writing-title" data-i18n="writing">نوشته‌ها</h2></div><span class="journal-symbol" aria-hidden="true">↗</span></div><div id="writing-list" class="item-list"><p class="empty-state" data-i18n="emptyWriting">هنوز نوشته‌ای اضافه نشده.</p></div></section>
-      <section id="books" class="section journal-section" aria-labelledby="books-title"><div class="section-head"><div><p class="eyebrow"><span>05</span><span data-i18n="readingLabel">مطالعه</span></p><h2 id="books-title" data-i18n="books">کتاب‌ها</h2></div><span class="journal-symbol" aria-hidden="true">≡</span></div><div id="books-list" class="item-list"><p class="empty-state" data-i18n="emptyBooks">هنوز کتابی اضافه نشده.</p></div></section>
+      <section id="writing" class="section journal-section" aria-labelledby="writing-title"><div class="section-head"><h2 id="writing-title" data-i18n="writing">نوشته‌ها</h2><span class="journal-symbol" aria-hidden="true">↗</span></div><div id="writing-list" class="item-list"><p class="empty-state" data-i18n="emptyWriting">هنوز نوشته‌ای اضافه نشده.</p></div></section>
+      <section id="books" class="section journal-section" aria-labelledby="books-title"><div class="section-head"><h2 id="books-title" data-i18n="books">کتاب‌ها</h2><span class="journal-symbol" aria-hidden="true">≡</span></div><div id="books-list" class="item-list"><p class="empty-state" data-i18n="emptyBooks">هنوز کتابی اضافه نشده.</p></div></section>
     </div>
   </main>
   <footer class="shell footer"><div><span class="red-dot" aria-hidden="true"></span><span data-i18n="connect">در ارتباط باشیم</span></div><a href="https://github.com/TheBoiAmirMan" target="_blank" rel="noopener noreferrer" lang="en" dir="ltr">GitHub ↗</a><a class="back-top" href="#home" aria-label="برگشت به بالا" data-i18n-aria="backTop">↑</a></footer>
