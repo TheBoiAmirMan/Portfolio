@@ -130,7 +130,8 @@ function resizeScene() {
   const box=canvas.parentElement.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
   width=box.width;height=box.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
   const accent=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();rgb=[1,3,5].map(i=>parseInt(accent.slice(i,i+2),16)).join(",");
-  points=Array.from({length:width<650?36:80},(_,i)=>({x:width*((i%10+.5)/10),y:height*((Math.floor(i/10)+.5)/8),phase:i*2.17}));
+  const columns=width<650?5:9,rows=6;
+  points=Array.from({length:columns*rows},(_,i)=>({x:width*((i%columns+.5)/columns),y:height*((Math.floor(i/columns)+.5)/rows),phase:i*2.17,column:i%columns,row:Math.floor(i/columns)}));
   drawScene(0);
 }
 function drawScene(time) {
@@ -145,8 +146,9 @@ function drawScene(time) {
     const a=nodes[i];
     for(let j=i+1;j<nodes.length;j++){
       const b=nodes[j],distance=Math.hypot(a.x-b.x,a.y-b.y);
-      if(distance>threshold)continue;
-      ctx.strokeStyle=`rgba(${rgb},${(.18+(1-distance/threshold)*.42)*opacity})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      const adjacent=Math.abs(points[i].column-points[j].column)+Math.abs(points[i].row-points[j].row)===1;
+      if(!adjacent||(i+j)%3===0)continue;
+      ctx.strokeStyle=`rgba(${rgb},${(dark?.22:.26)*opacity})`;ctx.lineWidth=.85;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
       if((i+j)%5===0){const progress=((time*.00009+i*.07)%1),horizontal=Math.abs(b.x-a.x),vertical=Math.abs(b.y-a.y),travel=progress*(horizontal+vertical);const px=travel<horizontal?a.x+Math.sign(b.x-a.x)*travel:b.x,py=travel<horizontal?a.y:a.y+Math.sign(b.y-a.y)*(travel-horizontal);ctx.fillStyle=`rgba(${rgb},${(dark?.8:.75)*opacity})`;ctx.fillRect(px-2,py-2,4,4);}
     }
     ctx.fillStyle=`rgba(${rgb},${(dark?.44:.5)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
