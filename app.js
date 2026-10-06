@@ -130,14 +130,14 @@ function resizeScene() {
   const box=canvas.parentElement.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
   width=box.width;height=box.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
   const accent=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();rgb=[1,3,5].map(i=>parseInt(accent.slice(i,i+2),16)).join(",");
-  points=Array.from({length:width<650?26:44},(_,i)=>{const seed=(Math.sin(i*127.1+13.7)*43758.5453)%1;const fraction=Math.abs(seed);return{x:width*(width<650?.07+fraction*.86:language==="fa"?.03+fraction*.54:.43+fraction*.54),y:height*(.12+Math.abs(Math.sin(i*78.23))*.73),phase:i*2.17};});
+  points=Array.from({length:width<650?36:80},(_,i)=>({x:width*((i%10+.5)/10),y:height*((Math.floor(i/10)+.5)/8),phase:i*2.17}));
   drawScene(0);
 }
 function drawScene(time) {
   if(!ctx||!width)return;
   ctx.clearRect(0,0,width,height);
   const dark=document.documentElement.dataset.theme==="dark",opacity=width<650?.55:1;
-  const center=language==="fa"?width*.25:width*.75,glow=ctx.createRadialGradient(center,height*.46,0,center,height*.46,width*.46);
+  const center=width*.5,glow=ctx.createRadialGradient(center,height*.46,0,center,height*.46,width*.7);
   glow.addColorStop(0,`rgba(${rgb},${dark?.09:.16})`);glow.addColorStop(1,`rgba(${rgb},0)`);ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
   const nodes=points.map(p=>({x:p.x+Math.sin(time*.00014+p.phase)*13,y:p.y+Math.cos(time*.00011+p.phase)*12}));
   const threshold=Math.min(width*.27,145);
@@ -146,8 +146,8 @@ function drawScene(time) {
     for(let j=i+1;j<nodes.length;j++){
       const b=nodes[j],distance=Math.hypot(a.x-b.x,a.y-b.y);
       if(distance>threshold)continue;
-      ctx.strokeStyle=`rgba(${rgb},${(1-distance/threshold)*(dark?.3:.38)*opacity})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
-      if((i+j)%11===0){const progress=((time*.000075+i*.07)%1);ctx.fillStyle=`rgba(${rgb},${(dark?.5:.56)*opacity})`;ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*progress,a.y+(b.y-a.y)*progress,1.6,0,Math.PI*2);ctx.fill();}
+      ctx.strokeStyle=`rgba(${rgb},${(1-distance/threshold)*(dark?.5:.46)*opacity})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      if((i+j)%5===0){const progress=((time*.00009+i*.07)%1),horizontal=Math.abs(b.x-a.x),vertical=Math.abs(b.y-a.y),travel=progress*(horizontal+vertical);const px=travel<horizontal?a.x+Math.sign(b.x-a.x)*travel:b.x,py=travel<horizontal?a.y:a.y+Math.sign(b.y-a.y)*(travel-horizontal);ctx.fillStyle=`rgba(${rgb},${(dark?.8:.75)*opacity})`;ctx.fillRect(px-2,py-2,4,4);}
     }
     ctx.fillStyle=`rgba(${rgb},${(dark?.44:.5)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
   }
