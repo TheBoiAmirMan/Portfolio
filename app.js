@@ -61,6 +61,7 @@ function applyTheme(theme) {
 }
 function renderTools() {
   const grid=document.getElementById("tools-grid");
+  if(!grid)return;
   grid.replaceChildren(...toolset.map(tool=>{
     const card=element("article",`tool-card ${tool.icon}`);
     const icon=element("div","tool-icon");const image=document.createElement("img");
@@ -108,6 +109,7 @@ function renderRole() {
 function applyLanguage(next) {
   language=next;document.documentElement.lang=next;document.documentElement.dir=next==="fa"?"rtl":"ltr";
   document.querySelectorAll("[data-i18n]").forEach(node=>node.textContent=t(node.dataset.i18n));
+  document.querySelectorAll("[data-fa][data-en]").forEach(node=>node.textContent=node.dataset[next]);
   document.querySelectorAll("[data-i18n-aria]").forEach(node=>node.setAttribute("aria-label",t(node.dataset.i18nAria)));
   renderRole();
   languageButton.textContent=next==="fa"?"EN":"فا";languageButton.setAttribute("aria-label",next==="fa"?"Switch to English":"تغییر زبان به فارسی");languageButton.title=languageButton.getAttribute("aria-label");
