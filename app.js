@@ -27,12 +27,9 @@ let content = null;
 let contentFailed = false;
 let activeFilter = "all";
 let resetScene = () => {};
-let restartAnimations = () => {};
 const themeButton = document.getElementById("theme-toggle");
 const languageButton = document.getElementById("language-toggle");
-const motionButton = document.getElementById("motion-toggle");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-let motionPaused = false;
 const t = key => translations[language][key];
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -102,23 +99,25 @@ function renderContent() {
   else{const empty=element("div","empty-project"),symbol=element("span","empty-symbol","[ ]");symbol.setAttribute("aria-hidden","true");empty.append(symbol,element("p","",t(contentFailed?"loadError":activeFilter==="all"?"emptyProjects":"emptyFiltered")));projectList.replaceChildren(empty);}
   for(const type of ["writing","books"]){const list=document.getElementById(`${type}-list`),items=valid(type);list.replaceChildren(...(items.length?items.map(item=>itemRow(item,type)):[element("p","empty-state",t(contentFailed?"loadError":type==="writing"?"emptyWriting":"emptyBooks"))]));}
 }
-function updateMotionButton() {
-  const paused=motionPaused||reducedMotion.matches;
-  motionButton.setAttribute("aria-pressed",String(paused));motionButton.setAttribute("aria-label",t(paused?"play":"pause"));motionButton.title=motionButton.getAttribute("aria-label");motionButton.disabled=reducedMotion.matches;
+function renderRole() {
+  const title=document.getElementById("role-title");
+  const data=`<strong class="data-word">${t("data")}</strong>`;
+  title.innerHTML=language==="fa"
+    ? `<span class="role-part">${t("engineer")}</span> ${data}<span class="role-separator" aria-hidden="true">،</span> <span class="role-part">${t("analyst")}</span> ${data}`
+    : `${data} <span class="role-part">${t("engineer")}</span><span class="role-separator" aria-hidden="true">,</span> ${data} <span class="role-part">${t("analyst")}</span>`;
+  title.setAttribute("aria-label",t("fullRole"));
 }
 function applyLanguage(next) {
   language=next;document.documentElement.lang=next;document.documentElement.dir=next==="fa"?"rtl":"ltr";
   document.querySelectorAll("[data-i18n]").forEach(node=>node.textContent=t(node.dataset.i18n));
   document.querySelectorAll("[data-i18n-aria]").forEach(node=>node.setAttribute("aria-label",t(node.dataset.i18nAria)));
-  document.querySelectorAll(".role-word").forEach((node,index)=>node.textContent=t(index===0?"engineer":"analyst"));
-  document.getElementById("role-title").setAttribute("aria-label",t("fullRole"));
+  renderRole();
   languageButton.textContent=next==="fa"?"EN":"فا";languageButton.setAttribute("aria-label",next==="fa"?"Switch to English":"تغییر زبان به فارسی");languageButton.title=languageButton.getAttribute("aria-label");
   document.title=t("pageTitle");document.querySelector('meta[name="description"]').content=t("description");
-  applyTheme(document.documentElement.dataset.theme);updateMotionButton();renderTools();renderContent();resetScene();
+  applyTheme(document.documentElement.dataset.theme);renderTools();renderContent();resetScene();
 }
 themeButton.addEventListener("click",()=>{const theme=document.documentElement.dataset.theme==="dark"?"light":"dark";applyTheme(theme);try{localStorage.setItem("portfolio-theme",theme);}catch{}});
 languageButton.addEventListener("click",()=>{const next=language==="fa"?"en":"fa";applyLanguage(next);try{localStorage.setItem("portfolio-language",next);}catch{}});
-motionButton.addEventListener("click",()=>{motionPaused=!motionPaused;updateMotionButton();restartAnimations();});
 document.getElementById("project-filters").addEventListener("click",event=>{const button=event.target.closest("button[data-filter]");if(!button)return;activeFilter=button.dataset.filter;document.querySelectorAll("[data-filter]").forEach(node=>node.setAttribute("aria-pressed",String(node===button)));renderContent();});
 applyLanguage(language);
 
@@ -154,19 +153,15 @@ function drawScene(time) {
   }
 }
 function animate(time) {if(time-lastFrame>32){drawScene(time);lastFrame=time;}frame=requestAnimationFrame(animate);}
-const words=[...document.querySelectorAll(".role-word")];
-let wordIndex=0,swapTimer,cleanupTimer;
 function restart() {
-  cancelAnimationFrame(frame);clearInterval(swapTimer);clearTimeout(cleanupTimer);
-  words.forEach((word,index)=>{word.classList.remove("is-leaving");word.classList.toggle("is-active",index===wordIndex);});
-  if(motionPaused||reducedMotion.matches||document.hidden){drawScene(0);return;}
+  cancelAnimationFrame(frame);
+  if(reducedMotion.matches||document.hidden){drawScene(0);return;}
   if(ctx)frame=requestAnimationFrame(animate);
-  swapTimer=setInterval(()=>{const previous=words[wordIndex];previous.classList.remove("is-active");previous.classList.add("is-leaving");wordIndex=(wordIndex+1)%words.length;words[wordIndex].classList.add("is-active");cleanupTimer=setTimeout(()=>previous.classList.remove("is-leaving"),600);},3400);
 }
-resetScene=resizeScene;restartAnimations=restart;
+resetScene=resizeScene;
 new ResizeObserver(resizeScene).observe(canvas.parentElement);
 document.addEventListener("visibilitychange",restart);
-reducedMotion.addEventListener("change",()=>{updateMotionButton();restart();});
+reducedMotion.addEventListener("change",restart);
 resizeScene();restart();
 const navLinks=[...document.querySelectorAll('.header-inner nav a')];
 // Observe every content section using a shared observer.
