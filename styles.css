@@ -23,4 +23,6 @@ dialog{width:min(780px,calc(100% - 32px));max-height:90vh;overflow:auto;backgrou
 
 .icon-button,.language-toggle{padding:0;line-height:1;align-items:center;justify-items:center}.icon-button svg{display:block;align-self:center;justify-self:center;flex-shrink:0}@media(max-width:650px){.footer{flex-wrap:wrap}}
 
-.data-word{position:relative;isolation:isolate}.data-word:after{content:"";position:absolute;left:-3%;right:-3%;bottom:.01em;height:.085em;min-height:5px;background:var(--accent);opacity:.75;transform:rotate(-3deg);z-index:-1;clip-path:polygon(1% 32%,8% 13%,25% 19%,43% 5%,64% 15%,83% 2%,98% 18%,100% 63%,93% 83%,72% 74%,51% 97%,30% 83%,12% 100%,0 76%);pointer-events:none}
+.data-word{position:relative;isolation:isolate}.data-word:after{content:"";position:absolute;left:-3%;right:-3%;bottom:.13em;height:.085em;min-height:5px;background:var(--accent);opacity:.75;transform:rotate(-3deg);z-index:-1;clip-path:polygon(1% 32%,8% 13%,25% 19%,43% 5%,64% 15%,83% 2%,98% 18%,100% 63%,93% 83%,72% 74%,51% 97%,30% 83%,12% 100%,0 76%);pointer-events:none}
+
+:root[lang=en] .data-word:after{transform:rotate(3deg);direction:ltr}
