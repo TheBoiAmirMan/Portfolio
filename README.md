@@ -63,4 +63,4 @@ python -m http.server 8000
 
 سپس `http://localhost:8000` را باز کنید. این دستور فقط برای بررسی محلی است؛ GitHub Pages فایل‌ها را مستقیم سرو می‌کند.
 
-پس از تغییر فایل‌ها و ثبت commit روی `main`، GitHub Pages نسخهٔ تازه را منتشر می‌کند. آدرس سایت: https://theboiamirman.github.io/Portfolio/
+پس از تغییر فایل‌ها و ثبت commit روی `main`، GitHub Pages نسخهٔ تازه را منتشر می‌کند. هنگام تغییر CSS یا JavaScript، مقدار `v` در آدرس فایل مربوط در `index.html` را هم تغییر دهید تا مرورگر نسخهٔ قبلی را از کش نخواند. آدرس سایت: https://theboiamirman.github.io/Portfolio/
