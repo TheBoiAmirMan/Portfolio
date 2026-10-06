@@ -71,11 +71,9 @@ function renderTools() {
 }
 function projectCard(item) {
   const card=element("article","project-card");
-  const action=element("button","project-open");action.type="button";
-  action.setAttribute("aria-label",localized(item.title));action.addEventListener("click",()=>openReader(item,"projects"));
-  const visual=element("div","project-visual "+(item.visual||"staging"));visual.setAttribute("aria-hidden","true");
-  for(let i=0;i<5;i++)visual.append(element("span","visual-node"));
-  action.append(visual,element("h3","",localized(item.title)));
+  const action=element("a","project-open");action.href=`projects/${item.slug}.html`;
+  action.setAttribute("aria-label",localized(item.title));
+  action.append(element("h3","",localized(item.title)));
   if(item.summary)action.append(element("p","item-summary",localized(item.summary)));
   action.append(element("span","project-link",language==="fa"?"دربارهٔ پروژه ←":"About the project →"));
   card.append(action);return card;
