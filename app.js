@@ -136,17 +136,17 @@ function resizeScene() {
 function drawScene(time) {
   if(!ctx||!width)return;
   ctx.clearRect(0,0,width,height);
-  const dark=document.documentElement.dataset.theme==="dark",opacity=width<650?.55:1;
+  const dark=document.documentElement.dataset.theme==="dark",opacity=width<650?.85:1;
   const center=width*.5,glow=ctx.createRadialGradient(center,height*.46,0,center,height*.46,width*.7);
   glow.addColorStop(0,`rgba(${rgb},${dark?.09:.16})`);glow.addColorStop(1,`rgba(${rgb},0)`);ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
   const nodes=points.map(p=>({x:p.x+Math.sin(time*.00014+p.phase)*13,y:p.y+Math.cos(time*.00011+p.phase)*12}));
-  const threshold=Math.min(width*.27,145);
+  const threshold=Math.max(width/10,height/8)*1.65;
   for(let i=0;i<nodes.length;i++){
     const a=nodes[i];
     for(let j=i+1;j<nodes.length;j++){
       const b=nodes[j],distance=Math.hypot(a.x-b.x,a.y-b.y);
       if(distance>threshold)continue;
-      ctx.strokeStyle=`rgba(${rgb},${(1-distance/threshold)*(dark?.5:.46)*opacity})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      ctx.strokeStyle=`rgba(${rgb},${(.18+(1-distance/threshold)*.42)*opacity})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
       if((i+j)%5===0){const progress=((time*.00009+i*.07)%1),horizontal=Math.abs(b.x-a.x),vertical=Math.abs(b.y-a.y),travel=progress*(horizontal+vertical);const px=travel<horizontal?a.x+Math.sign(b.x-a.x)*travel:b.x,py=travel<horizontal?a.y:a.y+Math.sign(b.y-a.y)*(travel-horizontal);ctx.fillStyle=`rgba(${rgb},${(dark?.8:.75)*opacity})`;ctx.fillRect(px-2,py-2,4,4);}
     }
     ctx.fillStyle=`rgba(${rgb},${(dark?.44:.5)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
