@@ -138,7 +138,7 @@ function drawScene(time) {
   ctx.clearRect(0,0,width,height);
   const dark=document.documentElement.dataset.theme==="dark",opacity=width<650?.55:1;
   const center=language==="fa"?width*.25:width*.75,glow=ctx.createRadialGradient(center,height*.46,0,center,height*.46,width*.46);
-  glow.addColorStop(0,`rgba(${rgb},${dark?.09:.055})`);glow.addColorStop(1,`rgba(${rgb},0)`);ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
+  glow.addColorStop(0,`rgba(${rgb},${dark?.09:.16})`);glow.addColorStop(1,`rgba(${rgb},0)`);ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
   const nodes=points.map(p=>({x:p.x+Math.sin(time*.00014+p.phase)*13,y:p.y+Math.cos(time*.00011+p.phase)*12}));
   const threshold=Math.min(width*.27,145);
   for(let i=0;i<nodes.length;i++){
@@ -146,10 +146,10 @@ function drawScene(time) {
     for(let j=i+1;j<nodes.length;j++){
       const b=nodes[j],distance=Math.hypot(a.x-b.x,a.y-b.y);
       if(distance>threshold)continue;
-      ctx.strokeStyle=`rgba(${rgb},${(1-distance/threshold)*(dark?.3:.23)*opacity})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
-      if((i+j)%11===0){const progress=((time*.000075+i*.07)%1);ctx.fillStyle=`rgba(${rgb},${(dark?.5:.4)*opacity})`;ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*progress,a.y+(b.y-a.y)*progress,1.6,0,Math.PI*2);ctx.fill();}
+      ctx.strokeStyle=`rgba(${rgb},${(1-distance/threshold)*(dark?.3:.38)*opacity})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      if((i+j)%11===0){const progress=((time*.000075+i*.07)%1);ctx.fillStyle=`rgba(${rgb},${(dark?.5:.56)*opacity})`;ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*progress,a.y+(b.y-a.y)*progress,1.6,0,Math.PI*2);ctx.fill();}
     }
-    ctx.fillStyle=`rgba(${rgb},${(dark?.44:.34)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`rgba(${rgb},${(dark?.44:.5)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
   }
 }
 function animate(time) {if(time-lastFrame>32){drawScene(time);lastFrame=time;}frame=requestAnimationFrame(animate);}
