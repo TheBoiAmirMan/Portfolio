@@ -25,7 +25,6 @@ const toolset = [
 let language = document.documentElement.lang === "en" ? "en" : "fa";
 let content = null;
 let contentFailed = false;
-let activeFilter = "all";
 let resetScene = () => {};
 let restartAnimations = () => {};
 const themeButton = document.getElementById("theme-toggle");
@@ -74,9 +73,8 @@ function projectCard(item) {
   const card=element("article","project-card");
   const imageUrl=safeLink(item.image);
   if(imageUrl){const image=document.createElement("img");image.src=imageUrl;image.alt=localized(item.imageAlt)||localized(item.title);image.loading="lazy";card.append(image);}
-  const category=["engineering","analytics","football"].includes(item.category)?t(item.category):localized(item.category);
-  if(category)card.append(element("span","project-category",category));
   card.append(element("h3","",localized(item.title)));
+  if(item.summary)card.append(element("p","item-summary",localized(item.summary)));
   if(Array.isArray(item.tags)){const tags=element("div","tags");item.tags.filter(tag=>typeof tag==="string").forEach(tag=>{const label=element("span","",tag);label.dir="auto";tags.append(label);});card.append(tags);}
   const href=safeLink(localized(item.url));
   if(href){const action=link(href,"project-link",`${t("viewProject")} ↗`);action.setAttribute("aria-label",`${t("viewProject")} — ${localized(item.title)}`);card.append(action);}
@@ -117,10 +115,10 @@ function itemRow(item,type) {
 }
 function renderContent() {
   const valid=type=>Array.isArray(content?.[type])?content[type].filter(item=>item&&localized(item.title).trim()):[];
-  const projects=valid("projects").filter(item=>activeFilter==="all"||item.category===activeFilter);
+  const projects=valid("projects");
   const projectList=document.getElementById("projects-list");
   if(projects.length)projectList.replaceChildren(...projects.map(projectCard));
-  else{const empty=element("div","empty-project"),symbol=element("span","empty-symbol","[ ]");symbol.setAttribute("aria-hidden","true");empty.append(symbol,element("p","",t(contentFailed?"loadError":activeFilter==="all"?"emptyProjects":"emptyFiltered")));projectList.replaceChildren(empty);}
+  else{const empty=element("div","empty-project"),symbol=element("span","empty-symbol","[ ]");symbol.setAttribute("aria-hidden","true");empty.append(symbol,element("p","",t(contentFailed?"loadError":"emptyProjects")));projectList.replaceChildren(empty);}
   for(const type of ["writing","books"]){const list=document.getElementById(`${type}-list`),items=valid(type);list.replaceChildren(...(items.length?items.map(item=>itemRow(item,type)):[element("p","empty-state",t(contentFailed?"loadError":type==="writing"?"emptyWriting":"emptyBooks"))]));}
 }
 function renderRole() {
@@ -140,7 +138,6 @@ function applyLanguage(next) {
 }
 themeButton.addEventListener("click",()=>{const theme=document.documentElement.dataset.theme==="dark"?"light":"dark";applyTheme(theme);try{localStorage.setItem("portfolio-theme",theme);}catch{}});
 languageButton.addEventListener("click",()=>{const next=language==="fa"?"en":"fa";applyLanguage(next);try{localStorage.setItem("portfolio-language",next);}catch{}});
-document.getElementById("project-filters").addEventListener("click",event=>{const button=event.target.closest("button[data-filter]");if(!button)return;activeFilter=button.dataset.filter;document.querySelectorAll("[data-filter]").forEach(node=>node.setAttribute("aria-pressed",String(node===button)));renderContent();});
 applyLanguage(language);
 
 async function loadContent(){try{const response=await fetch("content.json",{cache:"no-cache"});if(!response.ok)throw new Error("Content unavailable");content=await response.json();}catch{contentFailed=true;}renderContent();}
