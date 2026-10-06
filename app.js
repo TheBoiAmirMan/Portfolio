@@ -82,16 +82,38 @@ function projectCard(item) {
   if(href){const action=link(href,"project-link",`${t("viewProject")} ↗`);action.setAttribute("aria-label",`${t("viewProject")} — ${localized(item.title)}`);card.append(action);}
   return card;
 }
+function readingBody(item) {
+  const value=item.body||item.content||item.description;
+  if(Array.isArray(value))return value.map(localized).filter(Boolean);
+  return localized(value).split(/\n\s*\n/).filter(Boolean);
+}
+function openReader(item,type) {
+  const dialog=document.getElementById("reader"),body=document.getElementById("reader-body");
+  body.replaceChildren();
+  const imageUrl=safeLink(item.image||item.cover);
+  if(imageUrl){const image=element("img","reader-image");image.src=imageUrl;image.alt=localized(item.imageAlt)||localized(item.title);body.append(image);}
+  const heading=element("h2","",localized(item.title));heading.id="reader-title";
+  body.append(element("p","reader-kind",t(type)),heading);
+  if(item.author)body.append(element("p","item-meta",localized(item.author)));
+  readingBody(item).forEach(paragraph=>body.append(element("p","reader-paragraph",paragraph)));
+  const href=safeLink(localized(item.url));
+  if(href)body.append(link(href,"read-link",language==="fa"?"منبع اصلی ↗":"Original source ↗"));
+  dialog.showModal();
+}
 function itemRow(item,type) {
-  const article=element("article","item-row"),main=element("div","item-main"),title=element("h3","item-title");
-  const href=safeLink(localized(item.url)),text=localized(item.title);
-  if(href)title.append(link(href,"",text));else title.textContent=text;
-  main.append(title);const meta=element("div","item-meta");
-  if(type==="writing"&&typeof item.date==="string"){const date=element("time","",item.date);date.dir="auto";if(/^\d{4}-\d{2}-\d{2}$/.test(item.date))date.dateTime=item.date;meta.append(date);}
-  if(type==="books"){if(item.author)meta.append(element("span","",localized(item.author)));if(item.status)meta.append(element("span","",localized(item.status)));}
-  if(meta.childNodes.length)main.append(meta);article.append(main);
-  if(href){const arrow=link(href,"item-arrow","↗");arrow.setAttribute("aria-label",`${t("viewItem")} ${text}`);article.append(arrow);}
-  return article;
+  const article=element("article","reading-card "+type),imageUrl=safeLink(item.image||item.cover);
+  if(imageUrl){const image=element("img","reading-image");image.src=imageUrl;image.alt=localized(item.imageAlt)||localized(item.title);image.loading="lazy";article.append(image);}
+  const main=element("div","item-main");
+  const button=element("button","item-title",localized(item.title));
+  button.type="button";button.addEventListener("click",()=>openReader(item,type));
+  main.append(button);
+  const meta=element("p","item-meta",type==="books"?localized(item.author):item.date);
+  if(meta.textContent)main.append(meta);
+  const summary=localized(item.summary)||localized(item.description);
+  if(summary)main.append(element("p","item-summary",summary));
+  const action=element("button","read-link",language==="fa"?(type==="books"?"دربارهٔ کتاب ←":"خواندن نوشته ←"):(type==="books"?"About the book →":"Read article →"));
+  action.type="button";action.addEventListener("click",()=>openReader(item,type));
+  main.append(action);article.append(main);return article;
 }
 function renderContent() {
   const valid=type=>Array.isArray(content?.[type])?content[type].filter(item=>item&&localized(item.title).trim()):[];
@@ -103,7 +125,7 @@ function renderContent() {
 }
 function renderRole() {
   const title=document.getElementById("role-title");
-  document.querySelectorAll(".role-word").forEach((node,index)=>node.textContent=t(index===0?"engineer":"analyst"));
+  title.textContent=language==="fa"?"مهندسی و تحلیل داده":"Data engineering & analytics";
   title.setAttribute("aria-label",t("fullRole"));
 }
 function applyLanguage(next) {
@@ -121,57 +143,7 @@ languageButton.addEventListener("click",()=>{const next=language==="fa"?"en":"fa
 document.getElementById("project-filters").addEventListener("click",event=>{const button=event.target.closest("button[data-filter]");if(!button)return;activeFilter=button.dataset.filter;document.querySelectorAll("[data-filter]").forEach(node=>node.setAttribute("aria-pressed",String(node===button)));renderContent();});
 applyLanguage(language);
 
-// The background is a decorative network, not a data visualization.
-const canvas=document.getElementById("data-background"),ctx=canvas.getContext("2d");
-let width=0,height=0,frame=0,lastFrame=0,points=[];
-let rgb="255,83,97";
-function resizeScene() {
-  if(!ctx)return;
-  const box=canvas.parentElement.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,2);
-  width=box.width;height=box.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-  const accent=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();rgb=[1,3,5].map(i=>parseInt(accent.slice(i,i+2),16)).join(",");
-  const columns=width<650?5:9,rows=6;
-  points=Array.from({length:columns*rows},(_,i)=>({x:width*((i%columns+.5)/columns),y:height*((Math.floor(i/columns)+.5)/rows),phase:i*2.17,column:i%columns,row:Math.floor(i/columns)}));
-  drawScene(0);
-}
-function drawScene(time) {
-  if(!ctx||!width)return;
-  ctx.clearRect(0,0,width,height);
-  const dark=document.documentElement.dataset.theme==="dark",opacity=width<650?.85:1;
-  const center=width*.5,glow=ctx.createRadialGradient(center,height*.46,0,center,height*.46,width*.7);
-  glow.addColorStop(0,`rgba(${rgb},${dark?.09:.16})`);glow.addColorStop(1,`rgba(${rgb},0)`);ctx.fillStyle=glow;ctx.fillRect(0,0,width,height);
-  const nodes=points.map(p=>({x:p.x+Math.sin(time*.00014+p.phase)*13,y:p.y+Math.cos(time*.00011+p.phase)*12}));
-  const threshold=Math.max(width/10,height/8)*1.65;
-  for(let i=0;i<nodes.length;i++){
-    const a=nodes[i];
-    for(let j=i+1;j<nodes.length;j++){
-      const b=nodes[j],distance=Math.hypot(a.x-b.x,a.y-b.y);
-      const adjacent=Math.abs(points[i].column-points[j].column)+Math.abs(points[i].row-points[j].row)===1;
-      if(!adjacent||(i+j)%3===0)continue;
-      ctx.strokeStyle=`rgba(${rgb},${(dark?.22:.26)*opacity})`;ctx.lineWidth=.85;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
-      if((i+j)%5===0){const progress=((time*.00009+i*.07)%1),horizontal=Math.abs(b.x-a.x),vertical=Math.abs(b.y-a.y),travel=progress*(horizontal+vertical);const px=travel<horizontal?a.x+Math.sign(b.x-a.x)*travel:b.x,py=travel<horizontal?a.y:a.y+Math.sign(b.y-a.y)*(travel-horizontal);ctx.fillStyle=`rgba(${rgb},${(dark?.8:.75)*opacity})`;ctx.fillRect(px-2,py-2,4,4);}
-    }
-    ctx.fillStyle=`rgba(${rgb},${(dark?.44:.5)*opacity})`;ctx.beginPath();ctx.arc(a.x,a.y,i%7===0?2.4:1.5,0,Math.PI*2);ctx.fill();
-  }
-}
-function animate(time) {if(time-lastFrame>32){drawScene(time);lastFrame=time;}frame=requestAnimationFrame(animate);}
-const words=[...document.querySelectorAll(".role-word")];
-let wordIndex=0,swapTimer,cleanupTimer;
-function restart() {
-  cancelAnimationFrame(frame);clearInterval(swapTimer);clearTimeout(cleanupTimer);
-  words.forEach((word,index)=>{word.classList.remove("is-leaving");word.classList.toggle("is-active",index===wordIndex);});
-  if(reducedMotion.matches||document.hidden){drawScene(0);return;}
-  if(ctx)frame=requestAnimationFrame(animate);
-  swapTimer=setInterval(()=>{const previous=words[wordIndex];previous.classList.remove("is-active");previous.classList.add("is-leaving");wordIndex=(wordIndex+1)%words.length;words[wordIndex].classList.add("is-active");cleanupTimer=setTimeout(()=>previous.classList.remove("is-leaving"),600);},3400);
-}
-resetScene=resizeScene;restartAnimations=restart;
-new ResizeObserver(resizeScene).observe(canvas.parentElement);
-document.addEventListener("visibilitychange",restart);
-reducedMotion.addEventListener("change",restart);
-resizeScene();restart();
-const navLinks=[...document.querySelectorAll('.header-inner nav a')];
-// Observe every content section using a shared observer.
-const sectionObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(a=>{const current=a.getAttribute("href")===`#${entry.target.id}`;a.classList.toggle("is-current",current);if(current)a.setAttribute("aria-current","location");else a.removeAttribute("aria-current");});});},{rootMargin:"-15% 0px -55% 0px"});
-navLinks.forEach(a=>{const section=document.querySelector(a.getAttribute("href"));if(section)sectionObserver.observe(section);});
 async function loadContent(){try{const response=await fetch("content.json",{cache:"no-cache"});if(!response.ok)throw new Error("Content unavailable");content=await response.json();}catch{contentFailed=true;}renderContent();}
 loadContent();
+
+document.getElementById("reader-close").addEventListener("click",()=>document.getElementById("reader").close());
