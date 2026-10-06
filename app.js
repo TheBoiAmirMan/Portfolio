@@ -27,6 +27,7 @@ let content = null;
 let contentFailed = false;
 let activeFilter = "all";
 let resetScene = () => {};
+let restartAnimations = () => {};
 const themeButton = document.getElementById("theme-toggle");
 const languageButton = document.getElementById("language-toggle");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -101,10 +102,7 @@ function renderContent() {
 }
 function renderRole() {
   const title=document.getElementById("role-title");
-  const data=`<strong class="data-word">${t("data")}</strong>`;
-  title.innerHTML=language==="fa"
-    ? `<span class="role-part">${t("engineer")}</span> ${data}<span class="role-separator" aria-hidden="true">،</span> <span class="role-part">${t("analyst")}</span> ${data}`
-    : `${data} <span class="role-part">${t("engineer")}</span><span class="role-separator" aria-hidden="true">,</span> ${data} <span class="role-part">${t("analyst")}</span>`;
+  document.querySelectorAll(".role-word").forEach((node,index)=>node.textContent=t(index===0?"engineer":"analyst"));
   title.setAttribute("aria-label",t("fullRole"));
 }
 function applyLanguage(next) {
@@ -153,12 +151,16 @@ function drawScene(time) {
   }
 }
 function animate(time) {if(time-lastFrame>32){drawScene(time);lastFrame=time;}frame=requestAnimationFrame(animate);}
+const words=[...document.querySelectorAll(".role-word")];
+let wordIndex=0,swapTimer,cleanupTimer;
 function restart() {
-  cancelAnimationFrame(frame);
+  cancelAnimationFrame(frame);clearInterval(swapTimer);clearTimeout(cleanupTimer);
+  words.forEach((word,index)=>{word.classList.remove("is-leaving");word.classList.toggle("is-active",index===wordIndex);});
   if(reducedMotion.matches||document.hidden){drawScene(0);return;}
   if(ctx)frame=requestAnimationFrame(animate);
+  swapTimer=setInterval(()=>{const previous=words[wordIndex];previous.classList.remove("is-active");previous.classList.add("is-leaving");wordIndex=(wordIndex+1)%words.length;words[wordIndex].classList.add("is-active");cleanupTimer=setTimeout(()=>previous.classList.remove("is-leaving"),600);},3400);
 }
-resetScene=resizeScene;
+resetScene=resizeScene;restartAnimations=restart;
 new ResizeObserver(resizeScene).observe(canvas.parentElement);
 document.addEventListener("visibilitychange",restart);
 reducedMotion.addEventListener("change",restart);
