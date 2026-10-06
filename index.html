@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="مهندسی و تحلیل داده؛ پروژه‌ها، ابزارها، نوشته‌ها و کتاب‌ها.">
+  <meta name="description" content="پروژه‌ها، نوشته‌ها و ابزارهای امیرعلی کوهپایه.">
   <meta name="theme-color" content="#121214">
   <title>مهندسی و تحلیل داده | امیرعلی کوهپایه</title>
   <script>
     try { const t=localStorage.getItem('portfolio-theme'),l=localStorage.getItem('portfolio-language'); if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;if(l==='fa'||l==='en'){document.documentElement.lang=l;document.documentElement.dir=l==='fa'?'rtl':'ltr';} } catch {}
   </script>
   <link rel="preload" href="assets/fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261006-3">
-  <script src="app.js?v=20261006-3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261006-4">
+  <script src="app.js?v=20261006-4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">محتوای اصلی</a>
   <header class="site-header"><div class="shell header-inner">
-    <nav aria-label="ناوبری اصلی" data-i18n-aria="navigation"><a href="#expertise" data-i18n="expertise">تخصص‌ها</a><a href="#tools" data-i18n="tools">ابزارها</a><a href="#projects" data-i18n="projects">پروژه‌ها</a><a href="#writing" data-i18n="writing">نوشته‌ها</a><a href="#books" data-i18n="books">کتاب‌ها</a></nav>
+    <nav aria-label="ناوبری اصلی" data-i18n-aria="navigation"><a href="#projects" data-i18n="projects">پروژه‌ها</a><a href="#writing" data-i18n="writing">نوشته‌ها</a><a href="#books" data-i18n="books">کتاب‌ها</a><a href="#tools" data-i18n="tools">ابزارها</a></nav>
     <div class="header-controls"><button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to English">EN</button><button id="theme-toggle" class="icon-button" type="button" aria-label="فعال کردن حالت روشن">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.2 15.6A8.6 8.6 0 0 1 8.4 3.8 8.6 8.6 0 1 0 20.2 15.6Z"></path></svg>
@@ -25,21 +25,19 @@
   <main id="main">
     <section id="home" class="hero shell" aria-labelledby="role-title">
       <div class="hero-backdrop" aria-hidden="true"><canvas id="data-background"></canvas></div>
-      <div class="hero-copy"><p class="name"><span class="red-dot" aria-hidden="true"></span><span data-i18n="name">امیرعلی کوهپایه</span></p>
-      <h1 id="role-title" class="role-title" aria-label="مهندس داده و تحلیلگر داده"><span class="role-swap" aria-hidden="true"><span class="role-word is-active">مهندس</span><span class="role-word">تحلیلگر</span></span><strong class="data-word" data-i18n="data" aria-hidden="true">داده</strong><span class="period" aria-hidden="true">.</span></h1>
-      <p class="hero-focus" data-i18n="heroFocus">مهندسی داده / تحلیل / هوش تجاری</p>
-      <div class="hero-actions"><a href="#projects" class="button button-primary"><span data-i18n="viewProjects">دیدن پروژه‌ها</span><span aria-hidden="true">↗</span></a><a href="https://github.com/TheBoiAmirMan" target="_blank" rel="noopener noreferrer" class="quiet-link" lang="en" dir="ltr">GitHub ↗</a></div></div>
-      <div class="hero-foot"><span class="micro-label" lang="en" dir="ltr">DATA / SYSTEMS / INSIGHT</span><button id="motion-toggle" class="motion-toggle" type="button" aria-label="توقف حرکت" aria-pressed="false"><svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2"></path></svg><svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg></button></div>
+      <div class="hero-copy">
+        <h1 id="role-title" class="role-title" aria-label="مهندس داده، تحلیلگر داده"><span class="role-part" data-i18n="engineer">مهندس</span> <strong class="data-word" data-i18n="data">داده</strong><span class="role-separator" aria-hidden="true">،</span> <span class="role-part" data-i18n="analyst">تحلیلگر</span> <strong class="data-word" data-i18n="data">داده</strong></h1>
+        <a href="https://github.com/TheBoiAmirMan" target="_blank" rel="noopener noreferrer" class="hero-github" lang="en" dir="ltr">GitHub ↗</a>
+      </div>
     </section>
 
     <section id="expertise" class="section shell" aria-labelledby="expertise-title">
       <div class="section-head"><div><p class="eyebrow"><span>01</span><span data-i18n="focusLabel">حوزه‌های کاری</span></p><h2 id="expertise-title" data-i18n="expertiseTitle">از زیرساخت تا بینش</h2></div></div>
       <div class="expertise-grid">
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="7" rx="10" ry="4"></ellipse><path d="M6 7v18c0 2.2 4.5 4 10 4s10-1.8 10-4V7M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4"></path></svg></div><h3 data-i18n="engineering">مهندسی داده</h3><p data-i18n="engineeringShort">پایپ‌لاین، ETL و مدل‌سازی داده</p><span class="card-index" aria-hidden="true">01 / BUILD</span></article>
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 25V7m0 18h24M9 20l6-7 5 4 8-11M23 6h5v5"></path></svg></div><h3 data-i18n="analytics">تحلیل داده</h3><p data-i18n="analyticsShort">کاوش، تحلیل و بصری‌سازی</p><span class="card-index" aria-hidden="true">02 / EXPLORE</span></article>
-        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="3"></rect><path d="M4 12h24M12 12v15M17 22v-4m4 4v-6m4 6v-3"></path></svg></div><h3 data-i18n="bi">هوش تجاری</h3><p data-i18n="biShort">داشبورد، گزارش و شاخص‌های عملکرد</p><span class="card-index" aria-hidden="true">03 / DELIVER</span></article>
+        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="7" rx="10" ry="4"></ellipse><path d="M6 7v18c0 2.2 4.5 4 10 4s10-1.8 10-4V7M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4"></path></svg></div><h3 data-i18n="engineering">مهندسی داده</h3></article>
+        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 25V7m0 18h24M9 20l6-7 5 4 8-11M23 6h5v5"></path></svg></div><h3 data-i18n="analytics">تحلیل داده</h3></article>
+        <article class="expertise-card"><div class="section-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="3"></rect><path d="M4 12h24M12 12v15M17 22v-4m4 4v-6m4 6v-3"></path></svg></div><h3 data-i18n="bi">هوش تجاری</h3></article>
       </div>
-      <div class="workflow" aria-label="مسیر داده" data-i18n-aria="workflow"><span data-i18n="extract">جمع‌آوری</span><i aria-hidden="true"></i><span data-i18n="transform">آماده‌سازی</span><i aria-hidden="true"></i><span data-i18n="model">مدل‌سازی</span><i aria-hidden="true"></i><span data-i18n="deliver">ارائه</span></div>
     </section>
 
     <section id="tools" class="section tools-section" aria-labelledby="tools-title"><div class="shell">
