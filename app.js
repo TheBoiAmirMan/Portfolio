@@ -71,14 +71,14 @@ function renderTools() {
 }
 function projectCard(item) {
   const card=element("article","project-card");
-  const imageUrl=safeLink(item.image);
-  if(imageUrl){const image=document.createElement("img");image.src=imageUrl;image.alt=localized(item.imageAlt)||localized(item.title);image.loading="lazy";card.append(image);}
-  card.append(element("h3","",localized(item.title)));
-  if(item.summary)card.append(element("p","item-summary",localized(item.summary)));
-  if(Array.isArray(item.tags)){const tags=element("div","tags");item.tags.filter(tag=>typeof tag==="string").forEach(tag=>{const label=element("span","",tag);label.dir="auto";tags.append(label);});card.append(tags);}
-  const href=safeLink(localized(item.url));
-  if(href){const action=link(href,"project-link",`${t("viewProject")} ↗`);action.setAttribute("aria-label",`${t("viewProject")} — ${localized(item.title)}`);card.append(action);}
-  return card;
+  const action=element("button","project-open");action.type="button";
+  action.setAttribute("aria-label",localized(item.title));action.addEventListener("click",()=>openReader(item,"projects"));
+  const visual=element("div","project-visual "+(item.visual||"staging"));visual.setAttribute("aria-hidden","true");
+  for(let i=0;i<5;i++)visual.append(element("span","visual-node"));
+  action.append(visual,element("h3","",localized(item.title)));
+  if(item.summary)action.append(element("p","item-summary",localized(item.summary)));
+  action.append(element("span","project-link",language==="fa"?"دربارهٔ پروژه ←":"About the project →"));
+  card.append(action);return card;
 }
 function readingBody(item) {
   const value=item.body||item.content||item.description;
@@ -94,6 +94,17 @@ function openReader(item,type) {
   body.append(element("p","reader-kind",t(type)),heading);
   if(item.author)body.append(element("p","item-meta",localized(item.author)));
   readingBody(item).forEach(paragraph=>body.append(element("p","reader-paragraph",paragraph)));
+  for(const section of [
+    {key:"experience",fa:"تجربهٔ ساخت",en:"Building experience"},
+    {key:"challenges",fa:"چالش‌ها و راه‌حل‌ها",en:"Challenges and solutions"},
+    {key:"lessons",fa:"چیزهایی که یاد گرفتم",en:"What I learned"},
+    {key:"notes",fa:"یادداشت من",en:"My notes"}
+  ]){
+    const value=item[section.key],paragraphs=Array.isArray(value)?value.map(localized).filter(Boolean):localized(value).split(/\n\s*\n/).filter(Boolean);
+    if(!paragraphs.length)continue;
+    body.append(element("h3","reader-section-title",language==="fa"?section.fa:section.en));
+    paragraphs.forEach(text=>body.append(element("p","reader-paragraph",text)));
+  }
   const href=safeLink(localized(item.url));
   if(href)body.append(link(href,"read-link",language==="fa"?"منبع اصلی ↗":"Original source ↗"));
   dialog.showModal();
@@ -109,6 +120,8 @@ function itemRow(item,type) {
   if(meta.textContent)main.append(meta);
   const summary=localized(item.summary)||localized(item.description);
   if(summary)main.append(element("p","item-summary",summary));
+  const note=localized(item.notePreview)||localized(item.notes);
+  if(type==="books"&&note)main.append(element("p","book-note",note));
   const action=element("button","read-link",language==="fa"?(type==="books"?"دربارهٔ کتاب ←":"خواندن نوشته ←"):(type==="books"?"About the book →":"Read article →"));
   action.type="button";action.addEventListener("click",()=>openReader(item,type));
   main.append(action);article.append(main);return article;
