@@ -10,8 +10,8 @@
     try { const t=localStorage.getItem('portfolio-theme'),l=localStorage.getItem('portfolio-language'); if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;if(l==='fa'||l==='en'){document.documentElement.lang=l;document.documentElement.dir=l==='fa'?'rtl':'ltr';} } catch {}
   </script>
   <link rel="preload" href="assets/fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261006-role-8">
-  <script src="app.js?v=20261006-role-8" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261006-teal-9">
+  <script src="app.js?v=20261006-teal-9" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">محتوای اصلی</a>
@@ -42,7 +42,6 @@
 
     <section id="projects" class="section shell" aria-labelledby="projects-title">
       <div class="section-head"><h2 id="projects-title" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</h2></div>
-      <div id="project-filters" class="project-filters" role="group" aria-label="فیلتر پروژه‌ها" data-i18n-aria="filters"><button type="button" data-filter="all" aria-pressed="true" data-i18n="all">همه</button><button type="button" data-filter="engineering" aria-pressed="false" data-i18n="engineering">مهندسی داده</button><button type="button" data-filter="analytics" aria-pressed="false" data-i18n="analytics">تحلیل داده</button><button type="button" data-filter="football" aria-pressed="false" data-i18n="football">داده‌های فوتبال</button></div>
       <div id="projects-list" class="projects-grid" aria-live="polite"><div class="empty-project"><span class="empty-symbol" aria-hidden="true">[ ]</span><p data-i18n="emptyProjects">هنوز پروژه‌ای اضافه نشده.</p></div></div>
     </section>
 
