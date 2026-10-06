@@ -12,6 +12,14 @@ Example project (replace with a real project before publishing):
 {"title":{"fa":"عنوان پروژه","en":"Project title"},"category":"engineering","tags":["Python","SQL"],"url":"https://github.com/owner/repository"}
 ```
 
-Language and theme preferences are saved locally. The default is Persian and dark. The animated role and decorative canvas respect reduced-motion preferences and can be paused. Toolkit entries and translations are in `app.js`. No proficiency or credential levels are claimed.
+Writing and books support `image` (or `cover`), `imageAlt`, `summary`, and `body`. These text fields accept bilingual objects. `body` accepts a string with blank lines between paragraphs, or an array of bilingual paragraphs. Clicking a title or reading link opens the complete text in an accessible reading dialog; Escape closes it. Optional `url` appears as an original-source link. No HTML is injected from content.
+
+Example book schema (illustrative; not published content):
+
+```json
+{"title":{"fa":"عنوان کتاب","en":"Book title"},"author":{"fa":"نویسنده","en":"Author"},"cover":"assets/books/cover.jpg","summary":{"fa":"خلاصهٔ کوتاه","en":"Short summary"},"body":[{"fa":"توضیحات کتاب","en":"Book description"},{"fa":"یادداشت من","en":"My notes"}]}
+```
+
+Language and theme preferences are saved locally. The default is Persian and dark. There are no decorative animations. Toolkit entries and translations are in `app.js`. No proficiency or credential levels are claimed.
 
 Serve the repository root through GitHub Pages. All fonts and icons are local; see `assets/README.md` for attribution.
