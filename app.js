@@ -125,7 +125,7 @@ function renderContent() {
 }
 function renderRole() {
   const title=document.getElementById("role-title");
-  title.textContent=language==="fa"?"مهندسی و تحلیل داده":"Data engineering & analytics";
+  document.querySelectorAll(".role-word").forEach((node,index)=>node.textContent=t(index===0?"engineer":"analyst"));
   title.setAttribute("aria-label",t("fullRole"));
 }
 function applyLanguage(next) {
@@ -147,3 +147,10 @@ async function loadContent(){try{const response=await fetch("content.json",{cach
 loadContent();
 
 document.getElementById("reader-close").addEventListener("click",()=>document.getElementById("reader").close());
+
+const roleWords=[...document.querySelectorAll(".role-word")];
+let roleIndex=0,roleTimer;
+function restartRole(){clearInterval(roleTimer);if(reducedMotion.matches||document.hidden)return;roleTimer=setInterval(()=>{roleWords[roleIndex].classList.remove("is-active");roleIndex=(roleIndex+1)%roleWords.length;roleWords[roleIndex].classList.add("is-active");},3400);}
+document.addEventListener("visibilitychange",restartRole);
+reducedMotion.addEventListener("change",restartRole);
+restartRole();
