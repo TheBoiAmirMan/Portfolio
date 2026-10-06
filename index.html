@@ -10,13 +10,13 @@
     try { const t=localStorage.getItem('portfolio-theme'),l=localStorage.getItem('portfolio-language'); if(t==='dark'||t==='light')document.documentElement.dataset.theme=t;if(l==='fa'||l==='en'){document.documentElement.lang=l;document.documentElement.dir=l==='fa'?'rtl':'ltr';} } catch {}
   </script>
   <link rel="preload" href="assets/fonts/Vazirmatn.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261006-layout-6">
-  <script src="app.js?v=20261006-layout-6" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261006-editorial-7">
+  <script src="app.js?v=20261006-editorial-7" defer></script>
 </head>
 <body>
-  <div class="page-backdrop" aria-hidden="true"><canvas id="data-background"></canvas></div>
   <a class="skip-link" href="#main" data-i18n="skip">محتوای اصلی</a>
   <header class="site-header"><div class="shell header-inner quiet-header">
+    <nav aria-label="ناوبری اصلی" data-i18n-aria="navigation"><a href="#practice" data-fa="مهارت‌ها" data-en="Skills">مهارت‌ها</a><a href="#projects" data-i18n="projects">پروژه‌ها</a><a href="#writing" data-i18n="writing">نوشته‌ها</a><a href="#books" data-i18n="books">کتاب‌ها</a></nav>
     <div class="header-controls"><button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to English">EN</button><button id="theme-toggle" class="icon-button" type="button" aria-label="فعال کردن حالت روشن">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.2 15.6A8.6 8.6 0 0 1 8.4 3.8 8.6 8.6 0 1 0 20.2 15.6Z"></path></svg>
@@ -25,7 +25,9 @@
   <main id="main">
     <section id="home" class="hero shell" aria-labelledby="role-title">
       <div class="hero-copy">
-        <h1 id="role-title" class="role-title" aria-label="مهندس داده و تحلیلگر داده"><span class="role-swap" aria-hidden="true"><span class="role-word is-active">مهندس</span><span class="role-word">تحلیلگر</span></span><strong class="data-word" data-i18n="data" aria-hidden="true">داده</strong></h1>
+        <p class="personal-name" data-i18n="name">امیرعلی کوهپایه</p>
+        <h1 id="role-title" class="role-title">مهندسی و تحلیل داده</h1>
+        <div class="hero-links"><a href="#projects" data-i18n="viewProjects">دیدن پروژه‌ها</a><a href="#writing" data-i18n="writing">نوشته‌ها</a></div>
       </div>
     </section>
 
@@ -44,12 +46,13 @@
       <div id="projects-list" class="projects-grid" aria-live="polite"><div class="empty-project"><span class="empty-symbol" aria-hidden="true">[ ]</span><p data-i18n="emptyProjects">هنوز پروژه‌ای اضافه نشده.</p></div></div>
     </section>
 
-    <div class="shell journal-grid">
-      <section id="writing" class="section journal-section" aria-labelledby="writing-title"><div class="section-head"><h2 id="writing-title" data-i18n="writing">نوشته‌ها</h2><span class="journal-symbol" aria-hidden="true">↗</span></div><div id="writing-list" class="item-list"><p class="empty-state" data-i18n="emptyWriting">هنوز نوشته‌ای اضافه نشده.</p></div></section>
+    <div class="journal-grid">
+      <section id="writing" class="section shell journal-section" aria-labelledby="writing-title"><div class="section-head"><h2 id="writing-title" data-i18n="writing">نوشته‌ها</h2><span class="journal-symbol" aria-hidden="true">↗</span></div><div id="writing-list" class="item-list"><p class="empty-state" data-i18n="emptyWriting">هنوز نوشته‌ای اضافه نشده.</p></div></section>
       <section id="books" class="section journal-section" aria-labelledby="books-title"><div class="section-head"><h2 id="books-title" data-i18n="books">کتاب‌ها</h2><span class="journal-symbol" aria-hidden="true">≡</span></div><div id="books-list" class="item-list"><p class="empty-state" data-i18n="emptyBooks">هنوز کتابی اضافه نشده.</p></div></section>
     </div>
   </main>
   <footer class="shell footer"><div><span class="red-dot" aria-hidden="true"></span><span data-i18n="connect">در ارتباط باشیم</span></div><a href="https://github.com/TheBoiAmirMan" target="_blank" rel="noopener noreferrer" lang="en" dir="ltr">GitHub ↗</a><a class="back-top" href="#home" aria-label="برگشت به بالا" data-i18n-aria="backTop">↑</a></footer>
+  <dialog id="reader" aria-labelledby="reader-title"><button id="reader-close" type="button" aria-label="بستن / Close">×</button><div id="reader-body"></div></dialog>
   <noscript><p class="noscript-note">برای تغییر زبان، تم و نمایش محتوا جاوااسکریپت را فعال کنید. Enable JavaScript for language, theme and content controls.</p></noscript>
 </body>
 </html>
