@@ -9,7 +9,6 @@
         "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
         "en": "A data staging layer built for Azad University."
       },
-      "visual": "staging",
       "body": [
         {
           "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
@@ -27,7 +26,8 @@
       "lessons": {
         "fa": "",
         "en": ""
-      }
+      },
+      "slug": "azad-staging"
     },
     {
       "title": {
@@ -38,7 +38,6 @@
         "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
         "en": "The Azad University data warehouse project."
       },
-      "visual": "warehouse",
       "body": [
         {
           "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
@@ -56,7 +55,8 @@
       "lessons": {
         "fa": "",
         "en": ""
-      }
+      },
+      "slug": "azad-warehouse"
     },
     {
       "title": {
@@ -67,7 +67,6 @@
         "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
         "en": "PG Lab — an Iranian football league data project."
       },
-      "visual": "football",
       "body": [
         {
           "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
@@ -85,7 +84,8 @@
       "lessons": {
         "fa": "",
         "en": ""
-      }
+      },
+      "slug": "iran-football-data"
     }
   ],
   "writing": [],
