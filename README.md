@@ -4,6 +4,10 @@ Static bilingual data portfolio for GitHub Pages. Plain HTML, CSS, JavaScript an
 
 ## Content
 
+Projects open in the on-site reader. Add bilingual text under `body`, `experience`, `challenges`, and `lessons` to document the project and your actual experience. Empty sections are hidden. Project cards use simple illustrative diagrams rather than fabricated screenshots.
+
+Books support `notes` for your personal writing and `notePreview` for a short excerpt next to the cover. The full note is shown under “یادداشت من” in the reader. These fields are intentionally empty until real personal notes are supplied.
+
 Edit `content.json`. `projects`, `writing` and `books` are arrays. Titles can be strings or bilingual objects: `{"fa":"عنوان", "en":"Title"}`. Entries support `url`; projects also support `category` (`engineering`, `analytics`, `football`), `tags` and an optional local `image`. Writing supports `date`; books support `author` and `status`, both optionally bilingual.
 
 Example project (replace with a real project before publishing):
