@@ -8,6 +8,25 @@
       "summary": {
         "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
         "en": "A data staging layer built for Azad University."
+      },
+      "visual": "staging",
+      "body": [
+        {
+          "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
+          "en": "A data staging layer built for Azad University."
+        }
+      ],
+      "experience": {
+        "fa": "",
+        "en": ""
+      },
+      "challenges": {
+        "fa": "",
+        "en": ""
+      },
+      "lessons": {
+        "fa": "",
+        "en": ""
       }
     },
     {
@@ -18,6 +37,25 @@
       "summary": {
         "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
         "en": "The Azad University data warehouse project."
+      },
+      "visual": "warehouse",
+      "body": [
+        {
+          "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
+          "en": "The Azad University data warehouse project."
+        }
+      ],
+      "experience": {
+        "fa": "",
+        "en": ""
+      },
+      "challenges": {
+        "fa": "",
+        "en": ""
+      },
+      "lessons": {
+        "fa": "",
+        "en": ""
       }
     },
     {
@@ -28,6 +66,25 @@
       "summary": {
         "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
         "en": "PG Lab — an Iranian football league data project."
+      },
+      "visual": "football",
+      "body": [
+        {
+          "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
+          "en": "PG Lab — an Iranian football league data project."
+        }
+      ],
+      "experience": {
+        "fa": "",
+        "en": ""
+      },
+      "challenges": {
+        "fa": "",
+        "en": ""
+      },
+      "lessons": {
+        "fa": "",
+        "en": ""
       }
     }
   ],
@@ -51,7 +108,15 @@
           "en": "The book explores statistical analysis, undervalued players and a rethinking of traditional scouting judgments."
         }
       ],
-      "url": "https://openlibrary.org/books/OL7451963M/Moneyball"
+      "url": "https://openlibrary.org/books/OL7451963M/Moneyball",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
     },
     {
       "title": "Fundamentals of Data Engineering",
@@ -71,7 +136,15 @@
           "en": "Joe Reis and Matt Housley also discuss architecture, security, data management and orchestration."
         }
       ],
-      "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/"
+      "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
     },
     {
       "title": "T-SQL Fundamentals",
@@ -91,7 +164,15 @@
           "en": "Topics include SELECT, joins, subqueries, table expressions, set operators, window functions, data modifications and transactions."
         }
       ],
-      "url": "https://www.informit.com/store/t-sql-fundamentals-9780138102104"
+      "url": "https://www.informit.com/store/t-sql-fundamentals-9780138102104",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
     }
   ]
 }
