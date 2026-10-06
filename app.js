@@ -1,26 +1,48 @@
 "use strict";
 
-const menuButton = document.querySelector(".menu-toggle");
-const navigation = document.getElementById("navigation");
-function closeMenu() {
-  menuButton.setAttribute("aria-expanded", "false");
-  navigation.classList.remove("is-open");
+const themeButton = document.getElementById("theme-toggle");
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const next = theme === "dark" ? "روشن" : "تیره";
+  themeButton.setAttribute("aria-label", `فعال کردن حالت ${next}`);
+  themeButton.title = `حالت ${next}`;
+  document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#111211" : "#fafaf7";
 }
-menuButton.addEventListener("click", () => {
-  const open = menuButton.getAttribute("aria-expanded") !== "true";
-  menuButton.setAttribute("aria-expanded", String(open));
-  navigation.classList.toggle("is-open", open);
+applyTheme(document.documentElement.dataset.theme);
+themeButton.addEventListener("click", () => {
+  const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(theme);
+  try { localStorage.setItem("portfolio-theme", theme); } catch {}
 });
-navigation.addEventListener("click", event => {
-  if (event.target.closest("a")) closeMenu();
-});
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
-    closeMenu();
-    menuButton.focus();
-  }
-});
-document.getElementById("year").textContent = new Intl.NumberFormat("fa-IR", {useGrouping: false}).format(new Date().getFullYear());
+
+const words = [...document.querySelectorAll(".role-word")];
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let wordIndex = 0;
+let swapTimer;
+let cleanupTimer;
+function stopSwap() {
+  clearInterval(swapTimer);
+  clearTimeout(cleanupTimer);
+  words.forEach((word, index) => {
+    word.classList.remove("is-leaving");
+    word.classList.toggle("is-active", index === wordIndex);
+  });
+}
+function startSwap() {
+  stopSwap();
+  if (reducedMotion.matches || document.hidden) return;
+  swapTimer = setInterval(() => {
+    const previous = words[wordIndex];
+    previous.classList.remove("is-active");
+    previous.classList.add("is-leaving");
+    wordIndex = (wordIndex + 1) % words.length;
+    words[wordIndex].classList.add("is-active");
+    cleanupTimer = setTimeout(() => previous.classList.remove("is-leaving"), 600);
+  }, 3400);
+}
+document.addEventListener("visibilitychange", startSwap);
+reducedMotion.addEventListener("change", startSwap);
+startSwap();
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -35,36 +57,47 @@ function safeLink(value) {
     return ["http:", "https:"].includes(url.protocol) ? url.href : null;
   } catch { return null; }
 }
-function card(item, type) {
-  const article = element("article", "item-card");
-  if (item.category || item.status) article.append(element("span", "category", item.category || item.status));
-  article.append(element("h3", "", item.title));
-  if (type === "books" && item.author) article.append(element("p", "item-description", item.author));
-  if (item.description) article.append(element("p", "item-description", item.description));
-  if (type === "writing" && item.date) {
-    const time = element("time", "item-date", item.date);
-    if (/^\d{4}-\d{2}-\d{2}$/.test(item.date)) time.dateTime = item.date;
-    article.append(time);
+function link(href, className, text) {
+  const node = element("a", className, text);
+  node.href = href;
+  if (new URL(href).origin !== location.origin) {
+    node.target = "_blank";
+    node.rel = "noopener noreferrer";
   }
-  if (Array.isArray(item.tags) && item.tags.length) {
-    const tags = element("div", "tags");
-    for (const tag of item.tags.filter(tag => typeof tag === "string")) {
+  return node;
+}
+function row(item, type) {
+  const article = element("article", "item-row");
+  const main = element("div", "item-main");
+  const title = element("h3", "item-title");
+  const href = safeLink(item.url);
+  if (href) title.append(link(href, "", item.title));
+  else title.textContent = item.title;
+  main.append(title);
+  const meta = element("div", "item-meta");
+  if (type === "projects" && Array.isArray(item.tags)) {
+    for (const tag of item.tags.filter(value => typeof value === "string")) {
       const label = element("span", "", tag);
       label.dir = "auto";
-      tags.append(label);
+      meta.append(label);
     }
-    article.append(tags);
   }
-  const href = safeLink(item.url);
+  if (type === "writing" && typeof item.date === "string") {
+    const date = element("time", "", item.date);
+    date.dir = "auto";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(item.date)) date.dateTime = item.date;
+    meta.append(date);
+  }
+  if (type === "books") {
+    if (item.author) meta.append(element("span", "", item.author));
+    if (item.status) meta.append(element("span", "", item.status));
+  }
+  if (meta.childNodes.length) main.append(meta);
+  article.append(main);
   if (href) {
-    const link = element("a", "item-link", item.linkLabel || (type === "projects" ? "دیدن پروژه ↗" : "بیشتر بخوانید ↗"));
-    link.href = href;
-    if (new URL(href).origin !== location.origin) {
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    }
-    link.setAttribute("aria-label", `${link.textContent} — ${item.title}`);
-    article.append(link);
+    const arrow = link(href, "item-arrow", "↗");
+    arrow.setAttribute("aria-label", `مشاهدهٔ ${item.title}`);
+    article.append(arrow);
   }
   return article;
 }
@@ -76,16 +109,10 @@ async function loadContent() {
     for (const type of ["projects", "writing", "books"]) {
       if (!Array.isArray(content[type])) continue;
       const items = content[type].filter(item => item && typeof item.title === "string" && item.title.trim());
-      if (!items.length) continue;
-      const list = document.getElementById(`${type}-list`);
-      list.replaceChildren(...items.map(item => card(item, type)));
+      if (items.length) document.getElementById(`${type}-list`).replaceChildren(...items.map(item => row(item, type)));
     }
   } catch {
-    // Preserve the visible static sections; distinguish a loading error from an empty collection.
-    for (const list of document.querySelectorAll(".collection-list")) {
-      const message = list.querySelector(".empty-state p");
-      if (message) message.textContent = "محتوای این بخش فعلاً بارگذاری نشد. لطفاً صفحه را دوباره باز کنید.";
-    }
+    for (const message of document.querySelectorAll(".empty-state")) message.textContent = "بارگذاری نشد؛ دوباره تلاش کنید.";
   }
 }
 loadContent();
