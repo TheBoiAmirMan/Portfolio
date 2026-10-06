@@ -1,5 +1,97 @@
 {
-  "projects": [],
+  "projects": [
+    {
+      "title": {
+        "fa": "استیج دادهٔ دانشگاه آزاد",
+        "en": "Azad University Data Staging"
+      },
+      "summary": {
+        "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
+        "en": "A data staging layer built for Azad University."
+      }
+    },
+    {
+      "title": {
+        "fa": "انبار دادهٔ دانشگاه آزاد",
+        "en": "Azad University Data Warehouse"
+      },
+      "summary": {
+        "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
+        "en": "The Azad University data warehouse project."
+      }
+    },
+    {
+      "title": {
+        "fa": "داده‌های لیگ فوتبال ایران",
+        "en": "Iran Football League Data"
+      },
+      "summary": {
+        "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
+        "en": "PG Lab — an Iranian football league data project."
+      }
+    }
+  ],
   "writing": [],
-  "books": []
+  "books": [
+    {
+      "title": "Moneyball",
+      "author": "Michael Lewis",
+      "cover": "https://covers.openlibrary.org/b/isbn/9780393057652-L.jpg",
+      "summary": {
+        "fa": "داده، استعدادیابی و تصمیم‌گیری در بیسبال.",
+        "en": "Data, scouting and decision-making in baseball."
+      },
+      "body": [
+        {
+          "fa": "مانی‌بال روایت مایکل لوئیس از تیم Oakland Athletics و مدیر آن، بیلی بین، است؛ تیمی که با بودجهٔ محدود، به دنبال راه‌های بهتر برای ارزیابی بازیکنان بود.",
+          "en": "Michael Lewis follows the Oakland Athletics and Billy Beane as they seek better ways to evaluate players on a limited budget."
+        },
+        {
+          "fa": "کتاب نقش تحلیل آماری در پیدا کردن بازیکنان کم‌ارزش‌گذاری‌شده و بازنگری در قضاوت‌های سنتی استعدادیابی را بررسی می‌کند.",
+          "en": "The book explores statistical analysis, undervalued players and a rethinking of traditional scouting judgments."
+        }
+      ],
+      "url": "https://openlibrary.org/books/OL7451963M/Moneyball"
+    },
+    {
+      "title": "Fundamentals of Data Engineering",
+      "author": "Joe Reis & Matt Housley",
+      "cover": "https://www.oreilly.com/covers/urn%3Aorm%3Abook%3A9781098108298/296w/?format=webp",
+      "summary": {
+        "fa": "چرخهٔ عمر داده و طراحی سیستم‌های داده.",
+        "en": "The data engineering lifecycle and data system design."
+      },
+      "body": [
+        {
+          "fa": "این کتاب تصویری کلی از مهندسی داده ارائه می‌کند: از سیستم‌های منبع و دریافت داده تا ذخیره‌سازی، تبدیل و ارائهٔ داده به مصرف‌کنندگان.",
+          "en": "An overview of data engineering, from source systems and ingestion through storage, transformation and serving."
+        },
+        {
+          "fa": "جو رایس و مت هاوسلی علاوه بر مراحل چرخهٔ عمر داده، به معماری، امنیت، مدیریت داده و هماهنگ‌سازی فرایندها می‌پردازند.",
+          "en": "Joe Reis and Matt Housley also discuss architecture, security, data management and orchestration."
+        }
+      ],
+      "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/"
+    },
+    {
+      "title": "T-SQL Fundamentals",
+      "author": "Itzik Ben-Gan",
+      "cover": "https://www.informit.com/ShowCover.aspx?isbn=0138102104",
+      "summary": {
+        "fa": "مبانی کوئری‌نویسی و منطق T-SQL؛ ویرایش چهارم.",
+        "en": "T-SQL querying fundamentals and logic; fourth edition."
+      },
+      "body": [
+        {
+          "fa": "ایتزیک بن‌گان در این کتاب مبانی T-SQL و منطق پردازش کوئری را توضیح می‌دهد و آن‌ها را با مثال‌ها و تمرین‌های عملی همراه می‌کند.",
+          "en": "Itzik Ben-Gan explains T-SQL fundamentals and logical query processing through examples and exercises."
+        },
+        {
+          "fa": "موضوع‌ها شامل SELECT، JOIN، زیرکوئری‌ها، عبارت‌های جدولی، عملگرهای مجموعه‌ای، توابع پنجره‌ای، تغییر داده و تراکنش‌هاست.",
+          "en": "Topics include SELECT, joins, subqueries, table expressions, set operators, window functions, data modifications and transactions."
+        }
+      ],
+      "url": "https://www.informit.com/store/t-sql-fundamentals-9780138102104"
+    }
+  ]
 }
