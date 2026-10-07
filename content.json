@@ -173,6 +173,62 @@
         "fa": "",
         "en": ""
       }
+    },
+    {
+      "title": "Inverting the Pyramid",
+      "author": "Jonathan Wilson",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781409111115-L.jpg",
+      "summary": {
+        "fa": "تاریخ شکل‌گیری و تحول تاکتیک‌های فوتبال.",
+        "en": "A history of how football tactics evolved."
+      },
+      "body": [
+        {
+          "fa": "جاناتان ویلسون در این کتاب، مسیر شکل‌گیری سیستم‌ها و ایده‌های تاکتیکی فوتبال را از سال‌های ابتدایی بازی تا فوتبال مدرن دنبال می‌کند.",
+          "en": "Jonathan Wilson traces the development of football systems and tactical ideas from the game’s early years to the modern era."
+        },
+        {
+          "fa": "برای من، کتاب یادآور این است که پشت هر آرایش و الگوی بازی، یک زمینهٔ تاریخی و مجموعه‌ای از تصمیم‌های انسانی وجود دارد؛ چیزی که در تحلیل دادهٔ فوتبال نباید نادیده گرفت.",
+          "en": "For me, it is a reminder that every formation and playing pattern has a historical context and a set of human decisions behind it—something football data analysis should not overlook."
+        }
+      ],
+      "url": "https://www.hachette.co.uk/titles/jonathan-wilson/inverting-the-pyramid/9781409111115/",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
+    },
+    {
+      "title": "How to Watch Football",
+      "author": "Tifo — The Athletic",
+      "cover": "https://covers.openlibrary.org/b/isbn/9780241609378-L.jpg",
+      "summary": {
+        "fa": "راهنمایی تصویری برای دیدن فوتبال فراتر از توپ.",
+        "en": "An illustrated guide to seeing more than the ball."
+      },
+      "body": [
+        {
+          "fa": "Tifo در این کتاب با مجموعه‌ای از قواعد کوتاه و تصویری، تماشا کردن فوتبال را از تمرکز صرف بر توپ به دیدن فضا، حرکت، نقش‌ها و تصمیم‌ها گسترش می‌دهد.",
+          "en": "Tifo uses a set of short, illustrated rules to shift watching football beyond the ball toward space, movement, roles and decisions."
+        },
+        {
+          "fa": "این زاویهٔ نگاه به تحلیل نزدیک است: اول ببینیم در زمین چه اتفاقی می‌افتد، بعد دنبال داده و شاخصی باشیم که بتواند آن الگو را توضیح دهد.",
+          "en": "This perspective is close to analysis: first observe what happens on the pitch, then look for the data and metrics that can explain the pattern."
+        }
+      ],
+      "url": "https://www.penguin.co.uk/books/453943/how-to-watch-football-by-athletic-tifo---the/9780241609378",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
     }
   ]
 }
