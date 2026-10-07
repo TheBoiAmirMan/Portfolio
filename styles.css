@@ -34,7 +34,7 @@ dialog{width:min(780px,calc(100% - 32px));max-height:90vh;overflow:auto;backgrou
 .journey-track{position:relative;height:1px;margin:13px 0 10px;background:linear-gradient(90deg,transparent,var(--line) 12%,var(--accent) 54%,var(--line) 88%,transparent)}
 .journey-dot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft),0 0 18px var(--accent);transform:translate(-50%,-50%);animation:journey-travel 4.6s ease-in-out infinite}
 .journey-note{font-size:13px;letter-spacing:.01em}
-:root[lang=en] .journey-cue{direction:ltr;text-align:left}
+:root[lang=en] .journey-cue{left:auto;right:0;direction:ltr;text-align:left}
 :root[lang=en] .journey-kicker{letter-spacing:.12em}
 @keyframes journey-travel{0%,100%{left:10%;opacity:.65}50%{left:90%;opacity:1}}
 @media(max-width:850px){.journey-cue{position:static;width:min(280px,100%);margin-top:34px}.hero{padding-bottom:40px}}
