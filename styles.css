@@ -39,3 +39,67 @@ dialog{width:min(780px,calc(100% - 32px));max-height:90vh;overflow:auto;backgrou
 @keyframes journey-travel{0%,100%{left:10%;opacity:.65}50%{left:90%;opacity:1}}
 @media(max-width:850px){.journey-cue{position:static;width:min(280px,100%);margin-top:34px}.hero{padding-bottom:40px}}
 @media(prefers-reduced-motion:reduce){.journey-dot{animation:none;left:50%}}
+
+
+/* Editorial UI refinement: preserves the portfolio structure while improving hierarchy and rhythm. */
+:root{--header-bg:color-mix(in srgb,var(--bg) 91%,transparent);--lift:0 14px 34px #00000012}
+:root[data-theme=light]{--lift:0 14px 34px #12343a0d}
+body{letter-spacing:-.08px}
+.site-header{background:var(--header-bg);border-bottom:1px solid color-mix(in srgb,var(--line) 66%,transparent);backdrop-filter:blur(12px)}
+.header-inner{min-height:72px}
+.header-inner nav{gap:26px}
+.hero{min-height:390px;padding-block:clamp(64px,9vw,138px) clamp(54px,7vw,102px);display:flex;align-items:center}
+.hero-copy{position:relative;z-index:1}
+.personal-name{display:flex;align-items:center;gap:10px;letter-spacing:.02em}
+.personal-name:before{content:"";width:20px;height:1px;background:var(--accent)}
+.role-title{font-size:clamp(38px,5.8vw,78px);letter-spacing:-2px}
+.hero-links{gap:22px;margin-top:30px}
+.hero-links a{padding-block:5px}
+.hero-links a:after{content:"↗";display:inline-block;margin-inline-start:7px;font-size:.9em;transition:transform .2s ease}
+.hero-links a:hover:after{transform:translate(-3px,-3px)}
+:root[lang=en] .hero-links a:hover:after{transform:translate(3px,-3px)}
+.journey-cue{bottom:clamp(58px,7vw,102px);width:min(270px,24vw)}
+.journey-kicker{font-size:11px}
+.journey-note{font-size:13px;color:var(--text)}
+.section{padding-block:clamp(48px,6vw,78px)}
+.section-head{margin-bottom:30px}
+.section-head:after{font-size:12px;font-variant-numeric:tabular-nums;letter-spacing:.16em;color:var(--muted);direction:ltr}
+#practice .section-head:after{content:"01"}
+#projects .section-head:after{content:"02"}
+#writing .section-head:after{content:"03"}
+#books .section-head:after{content:"04"}
+.section-head h2{font-size:clamp(24px,2.2vw,31px)}
+.practice-list{gap:22px}
+.practice-unit{position:relative;padding:25px 0 22px;transition:padding .22s ease,border-color .22s ease}
+.practice-unit:hover{padding-inline-start:8px;border-color:var(--accent)}
+.practice-heading h3{font-size:clamp(17px,1.35vw,20px)}
+.practice-tools{margin-top:28px}
+.practice-tools img{width:29px;height:29px}
+#projects.shell{padding-block:clamp(52px,6vw,80px)}
+.projects-grid{gap:18px}
+.project-open{min-height:230px;border-radius:10px;padding:25px;background:color-mix(in srgb,var(--surface) 94%,var(--accent-soft));box-shadow:0 1px 0 transparent;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.project-open:before{content:"↗";width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--accent);font-size:14px;align-self:flex-start;transition:background .22s ease,color .22s ease,transform .22s ease}
+.project-open:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--lift)}
+.project-open:hover:before{background:var(--accent);color:var(--bg);transform:rotate(8deg)}
+.project-open h3{font-size:21px;line-height:1.65}
+.project-open .project-link{display:flex;align-items:center;gap:6px}
+.project-open .project-link:after{content:"←";transition:transform .2s ease}
+:root[lang=en] .project-open .project-link:after{content:"→"}
+.project-open:hover .project-link:after{transform:translateX(-4px)}
+:root[lang=en] .project-open:hover .project-link:after{transform:translateX(4px)}
+.journal-section{padding-block:clamp(48px,6vw,76px)}
+.reading-card{padding-block:4px 12px}
+.item-title{line-height:1.65}
+.books .reading-image{border:1px solid var(--line);border-radius:3px;padding:3px;background:var(--surface)}
+.footer{padding-block:30px;border-top:1px solid var(--line)}
+dialog{border-radius:12px;box-shadow:0 24px 70px #0007}
+.project-article{padding-block:clamp(38px,6vw,80px)}
+.project-article-header{padding-block:32px 30px}
+.project-article-header h1{max-width:900px}
+.project-prose{padding-top:38px}
+.project-prose{counter-reset:article-section}
+.project-prose h2{display:flex;align-items:baseline;gap:12px;padding-top:13px;margin-top:34px;border-top:1px solid var(--line)}
+.project-prose h2:before{counter-increment:article-section;content:"0" counter(article-section);font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--accent);direction:ltr}
+.project-prose h2:first-child{margin-top:0}
+@media(max-width:850px){.hero{min-height:0;display:block}.journey-cue{margin-top:46px}.project-open{min-height:205px}.section-head:after{font-size:11px}}
+@media(max-width:650px){.header-inner{min-height:0}.hero{padding-block:58px 46px}.role-title{font-size:clamp(32px,10vw,46px)}.section-head{margin-bottom:24px}.practice-unit:hover{padding-inline-start:0}.project-open{padding:21px}.project-open h3{font-size:19px}.project-prose h2{gap:9px}}
