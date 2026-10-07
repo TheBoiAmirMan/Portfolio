@@ -107,3 +107,5 @@ dialog{border-radius:12px;box-shadow:0 24px 70px #0007}
 
 /* Keep the editorial rhythm without visible section numbering. */
 .section-head:after,.project-prose h2:before{content:none;display:none}
+
+#practice .section-head:after,#projects .section-head:after,#writing .section-head:after,#books .section-head:after,.project-prose h2:before{content:none;display:none}
