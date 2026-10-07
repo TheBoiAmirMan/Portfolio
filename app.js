@@ -31,6 +31,9 @@ const themeButton = document.getElementById("theme-toggle");
 const languageButton = document.getElementById("language-toggle");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const t = key => translations[language][key];
+function icon(name,className=""){const node=document.createElement("i");node.dataset.lucide=name;node.setAttribute("aria-hidden","true");if(className)node.className=className;return node;}
+function addAction(parent,className,label,iconName="arrow-right"){const action=element("span",className);action.append(element("span","action-label",label),icon(iconName,iconName==="arrow-right"?"directional-icon":""));parent.append(action);return action;}
+function renderIcons(){if(window.lucide?.createIcons)window.lucide.createIcons();}
 function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -75,7 +78,7 @@ function projectCard(item) {
   action.setAttribute("aria-label",localized(item.title));
   action.append(element("h3","",localized(item.title)));
   if(item.summary)action.append(element("p","item-summary",localized(item.summary)));
-  action.append(element("span","project-link",language==="fa"?"دربارهٔ پروژه ←":"About the project →"));
+  addAction(action,"project-link",language==="fa"?"دربارهٔ پروژه":"About the project");
   card.append(action);return card;
 }
 function readingBody(item) {
@@ -104,7 +107,7 @@ function openReader(item,type) {
     paragraphs.forEach(text=>body.append(element("p","reader-paragraph",text)));
   }
   const href=safeLink(localized(item.url));
-  if(href)body.append(link(href,"read-link",language==="fa"?"منبع اصلی ↗":"Original source ↗"));
+  if(href){const source=link(href,"read-link","");addAction(source,"",""+(language==="fa"?"منبع اصلی":"Original source"),"arrow-up-right");body.append(source);}
   dialog.showModal();
 }
 function itemRow(item,type) {
@@ -120,7 +123,7 @@ function itemRow(item,type) {
   if(summary)main.append(element("p","item-summary",summary));
   const note=localized(item.notePreview)||localized(item.notes);
   if(type==="books"&&note)main.append(element("p","book-note",note));
-  const action=element("button","read-link",language==="fa"?(type==="books"?"دربارهٔ کتاب ←":"خواندن نوشته ←"):(type==="books"?"About the book →":"Read article →"));
+  const action=element("button","read-link");addAction(action,"",language==="fa"?(type==="books"?"دربارهٔ کتاب":"خواندن نوشته"):(type==="books"?"About the book":"Read article"));
   action.type="button";action.addEventListener("click",()=>openReader(item,type));
   main.append(action);article.append(main);return article;
 }
@@ -131,6 +134,7 @@ function renderContent() {
   if(projects.length)projectList.replaceChildren(...projects.map(projectCard));
   else{const empty=element("div","empty-project"),symbol=element("span","empty-symbol","[ ]");symbol.setAttribute("aria-hidden","true");empty.append(symbol,element("p","",t(contentFailed?"loadError":"emptyProjects")));projectList.replaceChildren(empty);}
   for(const type of ["writing","books"]){const list=document.getElementById(`${type}-list`),items=valid(type);list.replaceChildren(...(items.length?items.map(item=>itemRow(item,type)):[element("p","empty-state",t(contentFailed?"loadError":type==="writing"?"emptyWriting":"emptyBooks"))]));}
+  renderIcons();
 }
 function renderRole() {
   const title=document.getElementById("role-title");
@@ -145,13 +149,13 @@ function applyLanguage(next) {
   renderRole();
   languageButton.textContent=next==="fa"?"EN":"فا";languageButton.setAttribute("aria-label",next==="fa"?"Switch to English":"تغییر زبان به فارسی");languageButton.title=languageButton.getAttribute("aria-label");
   document.title=t("pageTitle");document.querySelector('meta[name="description"]').content=t("description");
-  applyTheme(document.documentElement.dataset.theme);renderTools();renderContent();resetScene();
+  applyTheme(document.documentElement.dataset.theme);renderTools();renderContent();renderIcons();resetScene();
 }
 themeButton.addEventListener("click",()=>{const theme=document.documentElement.dataset.theme==="dark"?"light":"dark";applyTheme(theme);try{localStorage.setItem("portfolio-theme",theme);}catch{}});
 languageButton.addEventListener("click",()=>{const next=language==="fa"?"en":"fa";applyLanguage(next);try{localStorage.setItem("portfolio-language",next);}catch{}});
 applyLanguage(language);
 
-async function loadContent(){try{const response=await fetch("content.json",{cache:"no-cache"});if(!response.ok)throw new Error("Content unavailable");content=await response.json();}catch{contentFailed=true;}renderContent();}
+async function loadContent(){try{const response=await fetch("content.json",{cache:"no-cache"});if(!response.ok)throw new Error("Content unavailable");content=await response.json();}catch{contentFailed=true;}renderContent();renderIcons();}
 loadContent();
 
 document.getElementById("reader-close").addEventListener("click",()=>document.getElementById("reader").close());
