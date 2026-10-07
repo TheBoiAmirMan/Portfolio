@@ -26,3 +26,5 @@ dialog{width:min(780px,calc(100% - 32px));max-height:90vh;overflow:auto;backgrou
 .data-word{position:relative;isolation:isolate}.data-word:after{content:"";position:absolute;left:-3%;right:-3%;bottom:.13em;height:.085em;min-height:5px;background:var(--accent);opacity:.75;transform:rotate(-3deg);z-index:-1;clip-path:polygon(1% 32%,8% 13%,25% 19%,43% 5%,64% 15%,83% 2%,98% 18%,100% 63%,93% 83%,72% 74%,51% 97%,30% 83%,12% 100%,0 76%);pointer-events:none}
 
 :root[lang=en] .data-word:after{transform:rotate(3deg);direction:ltr}
+
+.hero-intro{max-width:620px;margin-top:20px;color:var(--muted);font-size:16px;line-height:2}.section-lede{margin-top:5px;color:var(--muted);font-size:14px}.section-head>div{max-width:660px}.project-open h3{line-height:1.65}.project-open .item-summary{line-height:1.9}.article-kicker{color:var(--accent);font-size:13px;margin-bottom:8px}.project-prose{font-size:18px}.project-prose p{max-width:720px}
