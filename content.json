@@ -6,13 +6,13 @@
         "en": "Azad University Data Staging"
       },
       "summary": {
-        "fa": "لایه‌ای برای اینکه داده‌ها قبل از ورود به مسیر اصلی، تمیزتر و قابل‌اعتمادتر شوند.",
-        "en": "A layer for making data cleaner and more dependable before it enters the main flow."
+        "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
+        "en": "A data staging layer built for Azad University."
       },
       "body": [
         {
-          "fa": "لایه‌ای برای اینکه داده‌ها قبل از ورود به مسیر اصلی، تمیزتر و قابل‌اعتمادتر شوند.",
-          "en": "A layer for making data cleaner and more dependable before it enters the main flow."
+          "fa": "ساخت لایهٔ استیج داده برای دانشگاه آزاد.",
+          "en": "A data staging layer built for Azad University."
         }
       ],
       "experience": {
@@ -35,13 +35,13 @@
         "en": "Azad University Data Warehouse"
       },
       "summary": {
-        "fa": "تلاش برای جمع کردن داده‌های پراکندهٔ دانشگاه در یک ساختار منظم و قابل‌فهم.",
-        "en": "An effort to bring scattered university data into one clear, structured place."
+        "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
+        "en": "The Azad University data warehouse project."
       },
       "body": [
         {
-          "fa": "تلاش برای جمع کردن داده‌های پراکندهٔ دانشگاه در یک ساختار منظم و قابل‌فهم.",
-          "en": "An effort to bring scattered university data into one clear, structured place."
+          "fa": "پروژهٔ انبار دادهٔ دانشگاه آزاد.",
+          "en": "The Azad University data warehouse project."
         }
       ],
       "experience": {
@@ -64,13 +64,13 @@
         "en": "Iran Football League Data"
       },
       "summary": {
-        "fa": "یک فضای شخصی برای دنبال کردن فوتبال ایران از زاویهٔ داده؛ پروژه‌ای که هنوز در حال شکل گرفتن است.",
-        "en": "A personal space for following Iranian football through data—still taking shape."
+        "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
+        "en": "PG Lab — an Iranian football league data project."
       },
       "body": [
         {
-          "fa": "یک فضای شخصی برای دنبال کردن فوتبال ایران از زاویهٔ داده؛ پروژه‌ای که هنوز در حال شکل گرفتن است.",
-          "en": "A personal space for following Iranian football through data—still taking shape."
+          "fa": "پروژهٔ داده‌های لیگ فوتبال ایران؛ PG Lab.",
+          "en": "PG Lab — an Iranian football league data project."
         }
       ],
       "experience": {
@@ -95,8 +95,8 @@
       "author": "Michael Lewis",
       "cover": "https://covers.openlibrary.org/b/isbn/9780393057652-L.jpg",
       "summary": {
-        "fa": "داستانی دربارهٔ پیدا کردن ارزش، جایی که بقیه نگاه نمی‌کنند.",
-        "en": "A story about finding value where others are not looking."
+        "fa": "داده، استعدادیابی و تصمیم‌گیری در بیسبال.",
+        "en": "Data, scouting and decision-making in baseball."
       },
       "body": [
         {
@@ -123,8 +123,8 @@
       "author": "Joe Reis & Matt Housley",
       "cover": "https://www.oreilly.com/covers/urn%3Aorm%3Abook%3A9781098108298/296w/?format=webp",
       "summary": {
-        "fa": "کتابی برای کنار هم گذاشتن تکه‌های مختلف دنیای مهندسی داده.",
-        "en": "A book for connecting the many moving parts of data engineering."
+        "fa": "چرخهٔ عمر داده و طراحی سیستم‌های داده.",
+        "en": "The data engineering lifecycle and data system design."
       },
       "body": [
         {
@@ -151,8 +151,8 @@
       "author": "Itzik Ben-Gan",
       "cover": "https://www.informit.com/ShowCover.aspx?isbn=0138102104",
       "summary": {
-        "fa": "مرجعی که کمک می‌کند منطق پشت کوئری‌ها را بهتر بفهمم، نه فقط بنویسمشان.",
-        "en": "A reference for understanding the logic behind queries, not merely writing them."
+        "fa": "مبانی کوئری‌نویسی و منطق T-SQL؛ ویرایش چهارم.",
+        "en": "T-SQL querying fundamentals and logic; fourth edition."
       },
       "body": [
         {
