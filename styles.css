@@ -103,3 +103,7 @@ dialog{border-radius:12px;box-shadow:0 24px 70px #0007}
 .project-prose h2:first-child{margin-top:0}
 @media(max-width:850px){.hero{min-height:0;display:block}.journey-cue{margin-top:46px}.project-open{min-height:205px}.section-head:after{font-size:11px}}
 @media(max-width:650px){.header-inner{min-height:0}.hero{padding-block:58px 46px}.role-title{font-size:clamp(32px,10vw,46px)}.section-head{margin-bottom:24px}.practice-unit:hover{padding-inline-start:0}.project-open{padding:21px}.project-open h3{font-size:19px}.project-prose h2{gap:9px}}
+
+
+/* Keep the editorial rhythm without visible section numbering. */
+.section-head:after,.project-prose h2:before{content:none;display:none}
