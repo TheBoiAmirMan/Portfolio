@@ -229,6 +229,34 @@
         "fa": "",
         "en": ""
       }
+    },
+    {
+      "title": "How to Win the Premier League",
+      "author": "Ian Graham",
+      "cover": "https://cdn.penguin.co.uk/dam-assets/books/9781804950302/9781804950302-jacket-large.jpg",
+      "summary": {
+        "fa": "روایت درونی انقلاب داده در فوتبال و لیورپول.",
+        "en": "An inside account of football’s data revolution at Liverpool."
+      },
+      "body": [
+        {
+          "fa": "ایان گراهام از تجربه‌اش در هدایت پژوهش و تحلیل در لیورپول می‌نویسد؛ از ساختن تیم تحلیل تا نقش داده در تصمیم‌های مهم باشگاه.",
+          "en": "Ian Graham writes from his time leading research and analytics at Liverpool, from building the analysis team to the role of data in key club decisions."
+        },
+        {
+          "fa": "برای من، ارزش کتاب در نشان دادن فاصلهٔ میان «داشتن داده» و «استفادهٔ درست از آن» است؛ داده وقتی اثر می‌گذارد که وارد فرایند تصمیم‌گیری شود.",
+          "en": "For me, the book’s value is in showing the gap between having data and using it well: data matters when it becomes part of the decision-making process."
+        }
+      ],
+      "url": "https://www.penguin.co.uk/books/462193/how-to-win-the-premier-league-by-graham-ian/9781804950302",
+      "notes": {
+        "fa": "",
+        "en": ""
+      },
+      "notePreview": {
+        "fa": "",
+        "en": ""
+      }
     }
   ]
 }
