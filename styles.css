@@ -120,3 +120,38 @@ dialog{border-radius:12px;box-shadow:0 24px 70px #0007}
 :root[dir=rtl] .project-open:hover .project-link .directional-icon,:root[dir=rtl] .read-link:hover .directional-icon{transform:scaleX(-1) translateX(3px)}
 #reader-close .lucide{width:21px;height:21px;stroke-width:1.7}
 .journal-symbol{width:20px;height:20px;color:var(--accent)}
+
+
+/* Bookshelf: a quiet catalogue, kept separate from the writing list. */
+#books .item-list{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 40px;
+  border-top:1px solid var(--line);
+}
+#books .reading-card.books{
+  min-width:0;
+  gap:18px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+  transition:background-color .2s ease;
+}
+#books .reading-card.books:hover{background:var(--surface-alt)}
+#books .books .reading-image{
+  width:72px;
+  aspect-ratio:2/3;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:2px;
+  object-fit:cover;
+  box-shadow:3px 3px 0 color-mix(in srgb,var(--line) 65%,transparent);
+}
+#books .item-main{min-width:0;padding-block:1px}
+#books .item-title{font-size:17px;line-height:1.45}
+#books .item-summary{margin-top:8px;line-height:1.75}
+#books .read-link{margin-top:12px}
+@media(max-width:1000px){#books .item-list{gap:0 28px}}
+@media(max-width:650px){
+  #books .item-list{grid-template-columns:1fr}
+  #books .reading-card.books{padding-block:18px}
+  #books .books .reading-image{width:66px}
+}
